@@ -1,11 +1,8 @@
 package com.my.test.lamda;
 
-import com.my.test.domain.OrderDetailExcel;
-import lombok.extern.log4j.Log4j2;
+import com.my.test.domainBusiness.sale.domain.OrderDetailExcel;
 import lombok.extern.slf4j.Slf4j;
-import lombok.extern.slf4j.XSlf4j;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.lang.reflect.Field;

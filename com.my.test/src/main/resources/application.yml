@@ -1,2 +1,15 @@
-logging:
-  config: "log4j2.xml"
+#logging:
+#  config: "log4j2.xml"
+spring:
+  redis:
+    host: 127.0.0.1
+    password: Issac
+    port: 6379
+    database: 1
+    timeout: 3000
+    lettuce:
+      pool:
+        max-active: 100
+        max-wait: -1
+        max-idle: 20
+        min-idle: 5
