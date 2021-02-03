@@ -13,3 +13,9 @@ spring:
         max-wait: -1
         max-idle: 20
         min-idle: 5
+
+
+logging:
+  level:
+    com.my.test: debug
+

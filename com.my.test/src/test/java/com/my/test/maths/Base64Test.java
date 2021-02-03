@@ -10,7 +10,7 @@ public class Base64Test {
     public void base64Encode() {
 
 
-        MessageDigest.getInstance(base)
+//        MessageDigest.getInstance(base)
 
     }
 

@@ -62,7 +62,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
-<!--       集成redis-->
+        <!--       集成redis-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
@@ -71,7 +71,7 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-pool2</artifactId>
         </dependency>
-<!--集成fastJson-->
+        <!--集成fastJson-->
 
         <!-- excel start -->
         <dependency>
@@ -94,6 +94,12 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.60</version>
+        </dependency>
+        <!--swagger注解依赖-->
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>1.5.21</version>
         </dependency>
 
 
