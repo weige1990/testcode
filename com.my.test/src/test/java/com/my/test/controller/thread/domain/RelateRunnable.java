@@ -3,15 +3,16 @@ package com.my.test.controller.thread.domain;
 import java.time.LocalDateTime;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.concurrent.Callable;
 
-public class RelateRunnable implements Runnable {
+public class RelateRunnable implements Callable ,Runnable {
 
 
     private RelateRunnable preRun;//上一个任务
     private RelateRunnable nextRun;//下一个任务
     private String name;
     private volatile Thread ownRunThread;
-    private LinkedList<RelateRunnable> runs = new LinkedList<>();//第一个任务
+    private volatile LinkedList<RelateRunnable> runs = new LinkedList<>();//第一个任务
 
 
     public RelateRunnable(String name, LinkedList<RelateRunnable> runs) {
@@ -25,23 +26,24 @@ public class RelateRunnable implements Runnable {
     }
 
 
-
     public Thread getOwnRunThread() {
         return ownRunThread;
     }
 
 
     @Override
-    public void run() {
+    public Object call() {
+        RuntimeException runtimeException = new RuntimeException("名字为错误停止所有线程!");
         try {
             ownRunThread = Thread.currentThread();
-            if("error".equals(name))
-            {
-                throw new RuntimeException("名字为错误停止所有线程!");
+            if ("error".equals(name)) {
+                throw runtimeException;
             }
 
 
             System.out.println(name);
+
+            return this;
 
 
         } catch (Exception e) {
@@ -54,9 +56,11 @@ public class RelateRunnable implements Runnable {
                 while (iterator.hasNext()) {
                     relateRunTemp = iterator.next();
 
-                        if (relateRunTemp != null) {
-                            nextRun.getOwnRunThread().stop();//直接结束
-                        }
+                    if (relateRunTemp != null) {
+                        relateRunTemp.
+                                getOwnRunThread().
+                                stop();//直接结束
+                    }
 
 
                 }
@@ -66,6 +70,13 @@ public class RelateRunnable implements Runnable {
 
             }
 
+            return runtimeException;
+
         }
+    }
+
+    @Override
+    public void run() {
+        call();
     }
 }
