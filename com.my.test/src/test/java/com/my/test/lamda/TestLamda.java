@@ -8,6 +8,9 @@ import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.lang.reflect.Field;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -63,12 +66,12 @@ public class TestLamda {
         userBuilders.add(userBuilder2);
         userBuilders.add(userBuilder3);
         int count = 50;
-        int result=0;
+        int result = 0;
         LinkedList<User> users = new LinkedList<>();
         while (count > 0) {
             count--;
             User userTemp = userBuilders.get(count % 3).build();
-            result+=userTemp.getAge();
+            result += userTemp.getAge();
             users.add(userTemp);
         }
 
@@ -80,9 +83,7 @@ public class TestLamda {
 
     }
 
-
-    @Test
-    public void testSorted() {
+    private List<User> createUsers() {
         User user1 = User.builder().age(6).cardNo("12").deptNo("3").build();
         User user2 = User.builder().age(2).cardNo("13").deptNo("4").build();
         User user3 = User.builder().age(5).cardNo("14").deptNo("5").build();
@@ -90,20 +91,76 @@ public class TestLamda {
         User userBuilder5 = User.builder().age(15).cardNo("14").deptNo("5").build();
         User userBuilder6 = User.builder().age(10).cardNo("14").deptNo("5").build();
         User userBuilder7 = User.builder().age(16).cardNo("14").deptNo("5").build();
-        User userBuilder8= User.builder().age(18).cardNo("14").deptNo("5").build();
+        User userBuilder8 = User.builder().age(18).cardNo("14").deptNo("5").build();
         User userBuilder9 = User.builder().age(3).cardNo("14").deptNo("5").build();
         User userBuilder10 = User.builder().age(4).cardNo("14").deptNo("5").build();
-        List<User> users = Lists.newArrayList(user1,user2,user3
-                ,user4,userBuilder5,userBuilder6
-                ,userBuilder7,userBuilder8,userBuilder9,userBuilder10
+        List<User> users = Lists.newArrayList(user1, user2, user3
+                , user4, userBuilder5, userBuilder6
+                , userBuilder7, userBuilder8, userBuilder9, userBuilder10
         );
+        return users;
+    }
 
+    @Test
+    public void testSorted() {
+
+        List<User> users = createUsers();
         System.out.println(users);
         System.out.println("-------------------------排序后----------------");
-        users=users.stream().sorted(Comparator.comparing(User::getAge)).collect(Collectors.toList());
+        users = users.stream().sorted(Comparator.comparing(User::getAge)).collect(Collectors.toList());
 
 
         System.out.println(users);
 
     }
+
+    @Test
+    public void testCreateApplyNo2() {
+
+        String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+
+        System.out.println(String.format("YGPFP" + today + "%04d", (3)));
+        System.out.println(String.format("YGPFP" + today + "%04d", (0)));
+        System.out.println(String.format("YGPFP" + today + "%05d", (3)));
+        System.out.println(String.format("YGPFP" + today + "%05d", (12)));
+        System.out.println(String.format("YGPFP" + today + "%05d", (111)));
+        System.out.println(String.format("YGPFP" + today + "%05d", (1113)));
+        System.out.println(String.format("YGPFP" + today + "%05d", (11134)));
+        System.out.println(String.format("YGPFP" + today + "%05d", (111345)));
+
+
+    }
+
+
+    @Test
+    public void testEmptyListForEach() {
+
+        List<User> users = createUsers();
+
+        List<Integer> ages = users.stream().filter(o -> o.getAge() > 100).map(o -> o.getAge()).collect(Collectors.toList());
+        Integer ageSum = users.stream().filter(o -> o.getAge() > 100).map(o -> o.getAge()).reduce(Integer::sum).orElse(null);
+
+        System.out.println(ages);
+        System.out.println(ageSum);
+
+
+    }
+
+    @Test
+    public void testTime() {
+
+        log.info("{}", System.currentTimeMillis());
+
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime nowPlus30Min = now.plusMinutes(30);
+
+        Long miliSec = nowPlus30Min.toInstant(ZoneOffset.of("+8")).toEpochMilli() - now.toInstant(ZoneOffset.of("+8")).toEpochMilli();
+        Long mins = (miliSec / (1000 * 60));
+        System.out.println(miliSec);
+        System.out.println(mins);
+
+
+    }
+
+
 }
