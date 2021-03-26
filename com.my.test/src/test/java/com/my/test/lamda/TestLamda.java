@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.lang.reflect.Field;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
@@ -158,6 +159,26 @@ public class TestLamda {
         Long mins = (miliSec / (1000 * 60));
         System.out.println(miliSec);
         System.out.println(mins);
+
+
+    }
+
+
+    @Test
+    public void testTime2() {
+
+        log.info("{}", System.currentTimeMillis());
+
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime nowPlus30Min = now.plusDays(30);
+
+
+        Duration duration1 = Duration.between(now, nowPlus30Min);
+        Duration duration2 = Duration.between(nowPlus30Min, now);
+
+
+        System.out.println(duration1.toDays());
+        System.out.println(duration2.toDays());
 
 
     }
