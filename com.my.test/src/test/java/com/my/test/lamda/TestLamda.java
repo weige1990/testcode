@@ -183,5 +183,13 @@ public class TestLamda {
 
     }
 
+    @Test
+    public void testTime3() {
+
+        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")));
+
+
+    }
+
 
 }
