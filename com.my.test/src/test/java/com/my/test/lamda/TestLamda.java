@@ -191,5 +191,16 @@ public class TestLamda {
 
     }
 
+    @Test
+    public void testTime4() {
+
+        ArrayList<LocalDateTime> localDateTimes = Lists.newArrayList(LocalDateTime.now(), LocalDateTime.of(2021, 3, 25, 15, 0));
+
+        LocalDateTime maxTime = localDateTimes.stream().max(Comparator.comparing(o -> o)).orElse(null);
+        System.out.println(maxTime);
+
+
+    }
+
 
 }
