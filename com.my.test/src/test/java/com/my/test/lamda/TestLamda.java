@@ -192,12 +192,72 @@ public class TestLamda {
     }
 
     @Test
+    public void testTime5() {
+
+        User.UserBuilder userBuilder1 = User.builder().age(2).deptNo("aa");
+        User.UserBuilder userBuilder2 = User.builder().age(3).deptNo("bb");
+        User.UserBuilder userBuilder3 = User.builder().age(4).deptNo("cc");
+        List<User> lists = new LinkedList<>();
+
+        lists.add(userBuilder1.build());
+        lists.add(userBuilder2.build());
+        lists.add(userBuilder3.build());
+        lists.add(userBuilder2.build());
+        lists.add(userBuilder3.build());
+        lists.add(userBuilder1.build());
+        lists.add(userBuilder2.build());
+        lists.add(userBuilder3.build());
+        lists.add(userBuilder1.build());
+        lists.add(userBuilder2.build());
+        lists.add(userBuilder3.build());
+        lists.add(userBuilder1.build());
+        lists.add(userBuilder2.build());
+        lists.add(userBuilder3.build());
+        lists.add(userBuilder1.build());
+
+        List<User> targets = lists.stream().sorted(Comparator.comparing(User::getAge).reversed()).collect(Collectors.toList());
+
+        System.out.println(targets);
+
+    }
+
+    @Test
     public void testTime4() {
 
         ArrayList<LocalDateTime> localDateTimes = Lists.newArrayList(LocalDateTime.now(), LocalDateTime.of(2021, 3, 25, 15, 0));
 
         LocalDateTime maxTime = localDateTimes.stream().max(Comparator.comparing(o -> o)).orElse(null);
         System.out.println(maxTime);
+
+
+    }
+ @Test
+    public void testTime6() {
+
+     User.UserBuilder userBuilder1 = User.builder().age(2).deptNo("aa");
+     User.UserBuilder userBuilder2 = User.builder().age(3).deptNo("bb");
+     User.UserBuilder userBuilder3 = User.builder().age(4).deptNo("cc");
+     List<User> lists = new LinkedList<>();
+
+     lists.add(userBuilder1.build());
+     lists.add(userBuilder2.build());
+     lists.add(userBuilder3.build());
+     lists.add(userBuilder2.build());
+     lists.add(userBuilder3.build());
+     lists.add(userBuilder1.build());
+     lists.add(userBuilder2.build());
+     lists.add(userBuilder3.build());
+     lists.add(userBuilder1.build());
+     lists.add(userBuilder2.build());
+     lists.add(userBuilder3.build());
+     lists.add(userBuilder1.build());
+     lists.add(userBuilder2.build());
+     lists.add(userBuilder3.build());
+     lists.add(userBuilder1.build());
+
+     List<User> targets = lists.stream().sorted(Comparator.comparing(o->o.getAge())).collect(Collectors.toList());
+
+     System.out.println(targets);
 
 
     }
