@@ -49,4 +49,15 @@ public class StringTest {
         System.out.println(String.format("%s的订单待发货，请及时处理，订单编号：%s", null, null));
 
     }
+    @Test
+    public void testRegex2() {
+
+
+//        System.out.println(0b010-8);
+        System.out.println(0b11111&0b01);
+
+    }
+
+
+
 }
