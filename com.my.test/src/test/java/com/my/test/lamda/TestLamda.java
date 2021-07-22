@@ -22,19 +22,12 @@ public class TestLamda {
 
     @Test
     public void testFilter() {
-        Integer[] arr = {1, 2, 3, 4, 5, 6, 7, 8};
-        List<Integer> arrList = Arrays.asList(arr);
+        List<User> oldUsers = createUsers().stream().
+                sorted(Comparator.comparing(User::getAge)).collect(Collectors.toList());
+        List<User> newUsers = oldUsers.stream().filter(o -> o.getAge() > 2).collect(Collectors.toList());
 
-        List<Integer> leisure = arrList.stream()
-                .filter(o -> {
-                    return ((Integer) o).compareTo(3) > 0;
-                }).collect(Collectors.toList());
-
-
-        log.info("生成List{}", leisure);
-        log.debug("生成List{}", leisure);
-        log.error("生成List{}", leisure);
-        log.trace("生成List{}", leisure);
+        System.out.println(oldUsers);
+        System.out.println(newUsers);
 
     }
 
@@ -194,6 +187,50 @@ public class TestLamda {
     @Test
     public void testTime5() {
 
+        List<User> targets=repeatObjs();
+
+        System.out.println(targets);
+
+    }
+
+    @Test
+    public void testTime4() {
+
+        ArrayList<LocalDateTime> localDateTimes = Lists.newArrayList(LocalDateTime.now(), LocalDateTime.of(2021, 3, 25, 15, 0));
+
+        LocalDateTime maxTime = localDateTimes.stream().max(Comparator.comparing(o -> o)).orElse(null);
+        System.out.println(maxTime);
+
+
+    }
+ @Test
+    public void testTime6() {
+
+
+
+     List<User> targets=repeatObjs();
+
+     System.out.println(targets);
+
+
+    }
+    @Test
+    public void testRemoveIf() {
+
+
+        List<User> targets=repeatObjs();
+        System.out.println("__删除前"+targets);
+
+        targets.removeIf(o->Integer.valueOf(2).equals(o.getAge()));
+
+
+        System.out.println("__删除后"+targets);
+
+
+    }
+
+    private List<User> repeatObjs()
+    {
         User.UserBuilder userBuilder1 = User.builder().age(2).deptNo("aa");
         User.UserBuilder userBuilder2 = User.builder().age(3).deptNo("bb");
         User.UserBuilder userBuilder3 = User.builder().age(4).deptNo("cc");
@@ -215,52 +252,12 @@ public class TestLamda {
         lists.add(userBuilder3.build());
         lists.add(userBuilder1.build());
 
-        List<User> targets = lists.stream().sorted(Comparator.comparing(User::getAge).reversed()).collect(Collectors.toList());
+        List<User> targets = lists.stream()
+                .sorted(Comparator.comparing(o->o.getAge()))
+                .collect(Collectors.toList());
 
-        System.out.println(targets);
-
-    }
-
-    @Test
-    public void testTime4() {
-
-        ArrayList<LocalDateTime> localDateTimes = Lists.newArrayList(LocalDateTime.now(), LocalDateTime.of(2021, 3, 25, 15, 0));
-
-        LocalDateTime maxTime = localDateTimes.stream().max(Comparator.comparing(o -> o)).orElse(null);
-        System.out.println(maxTime);
-
+        return targets;
 
     }
- @Test
-    public void testTime6() {
-
-     User.UserBuilder userBuilder1 = User.builder().age(2).deptNo("aa");
-     User.UserBuilder userBuilder2 = User.builder().age(3).deptNo("bb");
-     User.UserBuilder userBuilder3 = User.builder().age(4).deptNo("cc");
-     List<User> lists = new LinkedList<>();
-
-     lists.add(userBuilder1.build());
-     lists.add(userBuilder2.build());
-     lists.add(userBuilder3.build());
-     lists.add(userBuilder2.build());
-     lists.add(userBuilder3.build());
-     lists.add(userBuilder1.build());
-     lists.add(userBuilder2.build());
-     lists.add(userBuilder3.build());
-     lists.add(userBuilder1.build());
-     lists.add(userBuilder2.build());
-     lists.add(userBuilder3.build());
-     lists.add(userBuilder1.build());
-     lists.add(userBuilder2.build());
-     lists.add(userBuilder3.build());
-     lists.add(userBuilder1.build());
-
-     List<User> targets = lists.stream().sorted(Comparator.comparing(o->o.getAge())).collect(Collectors.toList());
-
-     System.out.println(targets);
-
-
-    }
-
 
 }
