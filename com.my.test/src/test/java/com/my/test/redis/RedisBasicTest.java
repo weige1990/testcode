@@ -1,18 +1,14 @@
 package com.my.test.redis;
 
 import com.alibaba.fastjson.JSON;
-import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.my.test.TestStarter;
-import com.my.test.domainBusiness.sale.domain.OrderDetailExcel;
+import com.my.test.domainBusiness.sale.domain.ODetailExcel;
 import com.my.test.domainBusiness.test.domain.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.math.BigDecimal;
@@ -64,23 +60,14 @@ public class RedisBasicTest extends AbstractTestNGSpringContextTests {
     }
 
 
-    public OrderDetailExcel newOrderExcel() {
-        OrderDetailExcel orderDetailExcel = new OrderDetailExcel();
+    public ODetailExcel newOrderExcel() {
+        ODetailExcel oDetailExcel = new ODetailExcel();
 
 
-        orderDetailExcel.setAddress("abc");
-        orderDetailExcel.setActualPaidTime(LocalDateTime.now());
-        orderDetailExcel.setAllowInvoice(1);
-        orderDetailExcel.setBusinessLine("MRO");
-        orderDetailExcel.setCancelReason("不想要");
-        orderDetailExcel.setBrand("3M");
-        orderDetailExcel.setConsignee("YWX003");
-        orderDetailExcel.setCustomerName(UUID.randomUUID().toString());
-        orderDetailExcel.setDetailPayPrice(new BigDecimal(1000 * (Math.random())).setScale(4, RoundingMode.HALF_UP));
-        orderDetailExcel.setOrderNo(UUID.randomUUID().toString());
 
 
-        return orderDetailExcel;
+
+        return oDetailExcel;
     }
 
     /**

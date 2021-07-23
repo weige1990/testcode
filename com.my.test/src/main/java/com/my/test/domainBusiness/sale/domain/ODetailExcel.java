@@ -7,14 +7,9 @@ import lombok.Data;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-/**
- * 订单明细表
- *
- * @author zengzhicong zengzhicong@sanyygp.com
- * @since 1.0.0 2020-07-12
- */
+
 @Data
-public class OrderDetailExcel {
+public class ODetailExcel {
 
 
     private String orderNo;
@@ -30,13 +25,7 @@ public class OrderDetailExcel {
     /**
      * 支付方式 线上：取字典表 线下：取账期描述
      */
-    private String payMannerDesc;
-    private String payPeriod;
-    private String consignee;
-    private String consigneeMobile;
-    private String address;
-    private String salesName;
-    private String superiorInviterMobile;
+
     private String topInviterMobile;
     //    @Excel(name = "要求开发票", replace = {"是_true", "否_false"})
 //    private Boolean needInvoice;
@@ -48,24 +37,7 @@ public class OrderDetailExcel {
 
 
     //明细信息
-    private String skuNo;
-    private String skuName;
-    private String brand;
-    private String modelCode;
-    private String stockStatusDesc;
-    private String goodsDate;
-    private LocalDateTime goodsTime;
-    private String itemPcs;
-    private Integer num;
-    private BigDecimal detailPayUnitPrice;
-    private BigDecimal detailPayPrice;
 
-    private String signStatusDesc;
-    private Integer deliveryNum;
-    private String warehouseName;
-    private String logisticsCompany;
-    private String logisticsNo;
-    private Integer allowInvoice;
 
     private String outboundNo;
     private LocalDateTime transactionTime;

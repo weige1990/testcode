@@ -5,7 +5,7 @@ import lombok.Getter;
 /**
  * 运单查询的时间类型枚举
  *
- * @author chenweiwen chenweiwen@sanyygp.com
+ *
  * @since 1.0.0 2020-12-31
  */
 

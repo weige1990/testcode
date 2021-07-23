@@ -1,6 +1,6 @@
 package com.my.test.lamda;
 
-import com.my.test.domainBusiness.sale.domain.OrderDetailExcel;
+import com.my.test.domainBusiness.sale.domain.ODetailExcel;
 import com.my.test.lamda.domain.User;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.util.Lists;
@@ -35,7 +35,7 @@ public class TestLamda {
     @Test
     public void testGetAllFields() {
 
-        Class<OrderDetailExcel> orderDetailExcelClass = OrderDetailExcel.class;
+        Class<ODetailExcel> orderDetailExcelClass = ODetailExcel.class;
 
         List<Field> fields = Arrays.asList(orderDetailExcelClass.getDeclaredFields());
 

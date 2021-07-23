@@ -21,12 +21,17 @@ public class TestThreadController {
 private ThreadPoolExecutor testThreadPools;
 
 
+//private static volatile String flag;
+
+
     @GetMapping("/testThreadExtend")
     public Result testThreadExtend()
     {
 
+
+        String flag=  UUID.randomUUID().toString();
         for (int i=0;i<=1000;i++) {
-            createThreads();
+            createThreads(flag);
         }
 
 
@@ -37,21 +42,42 @@ private ThreadPoolExecutor testThreadPools;
 
     private void createThreads(){
 
-        String outSideVal=UUID.randomUUID().toString();
-        log.info("接口:生成uuid:{}",outSideVal);
+       String flag=UUID.randomUUID().toString();
+        log.info("接口:生成uuid:{}",flag);
 
         ThreadLocal userTest = ThreadUtils.getUserTest();
-        userTest.set(outSideVal);
+        userTest.set(flag);
 
         testThreadPools.submit(()->{
-            if(outSideVal.equals(userTest.get()))
+            if(flag.equals(userTest.get()))
             {
-                log.info("一致,外层信息:{},里层信息{}",outSideVal,userTest.get());
+                log.info("一致,外层信息:{},里层信息{}",flag,userTest.get());
 
             }
             else
             {
-                log.error("不一致,外层信息:{},里层信息{}",outSideVal,userTest.get());
+                log.error("不一致,外层信息:{},里层信息{}",flag,userTest.get());
+            }
+
+
+        });
+
+    }
+    private void createThreads(String flag){
+
+
+        ThreadLocal userTest = ThreadUtils.getUserTest();
+        userTest.set(flag);
+
+        testThreadPools.submit(()->{
+            if(flag.equals(userTest.get()))
+            {
+                log.info("一致,外层信息:{},里层信息{}",flag,userTest.get());
+
+            }
+            else
+            {
+                log.error("不一致,外层信息:{},里层信息{}",flag,userTest.get());
             }
 
 

@@ -32,7 +32,7 @@ import java.util.List;
 @Slf4j
 //@SpringBootTest
 //@WebAppConfiguration
-//@SpringBootApplication(scanBasePackages = "com.ygp.tms.**.controller")
+
 public class UrlTest {
     @Autowired
     private ApplicationContext context;
@@ -43,7 +43,7 @@ public class UrlTest {
 
         PathMatchingResourcePatternResolver pathMatchingResourcePatternResolver = new PathMatchingResourcePatternResolver();
         CachingMetadataReaderFactory cachingMetadataReaderFactory = new CachingMetadataReaderFactory();
-        Resource[] resources = pathMatchingResourcePatternResolver.getResources("classpath*:com/ygp/tms/**/controller/*Controller.class");
+        Resource[] resources = pathMatchingResourcePatternResolver.getResources("aa");
         ClassLoader systemClassLoader = ClassLoader.getSystemClassLoader();
 
         List<UrlPage> pcPages = new LinkedList<>();
