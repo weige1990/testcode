@@ -4,7 +4,7 @@
 
 # 20210722加入阿里com.alibaba.ttl.TransmittableThreadLocal测试
 
-## 结论不适合:主线程 提交异步线程池任务场景
+## 结论不适合:主线程 提交异步线程池任务场景(测试类 com.my.test.thread.TestThreadController)
 
 一分析目标(TransmittableThreadLocal 是否适合 主线程 提交异步线程池任务场景?):
 com.alibaba.ttl.TransmittableThreadLocal 这个ThreadLocal类的可用场景不多
